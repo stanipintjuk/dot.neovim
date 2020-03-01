@@ -40,9 +40,11 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
 
-""" CtrlP Plug 'kien/ctrlp.vim'
+""" CtrlP 
+Plug 'kien/ctrlp.vim'
 let g:ctrlp_map = '<leader><Space>' 
 let g:ctrlp_cmd = 'CtrlP'
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*/node_modules/*
@@ -126,5 +128,4 @@ set listchars=tab:\|·,trail:~,extends:,precedes:,space:·,nbsp:%
 set list
 
 "}}}
-
 
