@@ -1,3 +1,6 @@
+"" Deps
+let mapleader = ";"
+
 " vim:foldmethod=marker:foldlevel=0
 " config variables
 
@@ -29,6 +32,7 @@ source $LOCALAPPDATA/nvim/plugin-configs/ts-react-stack.vim
 """ NERDTree
 Plug 'preservim/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks = 1
 
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
@@ -54,13 +58,17 @@ let g:airline_powerline_fonts = 1
 """ Themes
 Plug 'rafi/awesome-vim-colorschemes'
 
+
+""" Tools
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'junegunn/goyo.vim'
+Plug 'gcmt/taboo.vim'
+
 " == AUTOCMD END ================================
 call plug#end()
 "}}}
 
 " Keymaps{{{
-"" General
-let mapleader = ";"
 
 "" Buffer management
 nnoremap gj <C-w>j
@@ -78,6 +86,9 @@ nnoremap g= <C-w>=
 nnoremap gn :split<CR>
 nnoremap gv :vsplit<CR>
 
+"" go to file in new buffer
+nnoremap gf :belowright vsplit <cfile><CR>
+
 """ Save and quit
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -87,6 +98,10 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>rc :tabnew $LOCALAPPDATA\nvim\init.vim<CR>
 """ Load config
 nnoremap <leader>vim :source $LOCALAPPDATA\nvim\init.vim<CR>"}}}
+
+"" Terminal keymaps
+nnoremap <leader>t :belowright split \| terminal powershell<CR>
+nnoremap <C-d> <C-\><C-n>
 
 " General editor config{{{
 "" 256 color support
@@ -109,13 +124,15 @@ set number
 "" line break
 set nowrap
 set linebreak " this will not break words when 'set wrap' is executed manually
+
+
 " }}}
 
 " Theming{{{
 :colorscheme molokai
 
 """ visual representation of stuff
-set listchars=tab:\|·,trail:~,extends:,precedes:,space:·,nbsp:%
+set listchars=tab:\|·,trail:˽,extends:,precedes:,space:·,nbsp:%
 set list
 
 "}}}
