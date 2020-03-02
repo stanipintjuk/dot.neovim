@@ -1,4 +1,3 @@
-" Deps
 let mapleader = ";"
 
 " vim:foldmethod=marker:foldlevel=0
@@ -8,7 +7,6 @@ let mapleader = ";"
 " == VIM PLUG ================================ 
 " Setup plugin manager
 if has('unix')
-   echo 'Running on unix'
    let g:nvim_config_dir = '~/.config/nvim'
    let g:nvim_plugged_dir = g:nvim_config_dir . '/plugged'
    let g:nvim_autoload_plugvim = g:nvim_config_dir . '/autoload/plug.vim'
@@ -21,7 +19,6 @@ if has('unix')
 endif
 
 if has('win32')
-   echo 'Running on windows'
    let g:nvim_config_dir = '$LOCALAPPDATA\nvim'
    let g:nvim_plugged_dir = g:nvim_config_dir . '\plugged'
    let g:nvim_autoload_plugvim = g:nvim_config_dir . '\autoload\plug.vim'
@@ -41,6 +38,7 @@ Plug 'LnL7/vim-nix'
 """ NERDTree
 Plug 'preservim/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks = 1
 
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
@@ -67,12 +65,17 @@ let g:airline_powerline_fonts = 1
 """ Themes
 Plug 'rafi/awesome-vim-colorschemes'
 
+
+""" Tools
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'junegunn/goyo.vim'
+Plug 'gcmt/taboo.vim'
+
 " == AUTOCMD END ================================
 call plug#end()
 "}}}
 
 " Keymaps{{{
-"" General
 
 "" Buffer management
 nnoremap gj <C-w>j
@@ -90,6 +93,9 @@ nnoremap g= <C-w>=
 nnoremap gn :split<CR>
 nnoremap gv :vsplit<CR>
 
+"" go to file in new buffer
+nnoremap gf :belowright vsplit <cfile><CR>
+
 """ Save and quit
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -101,7 +107,17 @@ nnoremap <leader>rc :tabnew $MYVIMRC<CR>
 nnoremap <leader>vim :source $MYVIMRC<CR>
 "}}}
 
-" General editor config{{
+"" Terminal keymaps
+if has('win32')
+   nnoremap <leader>t :belowright split \| terminal powershell<CR>
+endif
+
+if has('unix')
+   nnoremap <leader>t :belowright split \| terminal zsh<CR>
+endif
+nnoremap <C-d> <C-\><C-n>
+
+" General editor config{{{
 "" 256 color support
 "execute "set t_8f=\e[38;2;%lu;%lu;%lum"
 "execute "set t_8b=\e[48;2;%lu;%lu;%lum"
@@ -122,13 +138,15 @@ set number
 "" line break
 set nowrap
 set linebreak " this will not break words when 'set wrap' is executed manually
+
+
 " }}}
 
 " Theming{{{
 :colorscheme molokai
 
 """ visual representation of stuff
-set listchars=tab:\|\ ,trail:~,extends:,precedes:,space:·,nbsp:%
+set listchars=tab:\|·,trail:˽,extends:,precedes:,space:·,nbsp:%
 set list
 
 "}}}
