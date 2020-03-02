@@ -115,7 +115,7 @@ endif
 if has('unix')
    nnoremap <leader>t :belowright split \| terminal zsh<CR>
 endif
-nnoremap <C-d> <C-\><C-n>
+tnoremap <C-d> <C-\><C-n>
 
 " General editor config{{{
 "" 256 color support
