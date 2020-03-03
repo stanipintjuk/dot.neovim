@@ -40,6 +40,12 @@ Plug 'preservim/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
 
+""" Sessions
+Plug 'xolox/vim-session'
+
+""" Merge tabs
+Plug 'vim-scripts/Tabmerge'
+
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
 
@@ -70,7 +76,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 """ Tools
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/goyo.vim'
-Plug 'gcmt/taboo.vim'
 
 " == AUTOCMD END ================================
 call plug#end()
@@ -95,7 +100,8 @@ nnoremap gn :split<CR>
 nnoremap gv :vsplit<CR>
 
 "" go to file in new buffer
-nnoremap gf :belowright vsplit <cfile><CR>
+
+nnoremap gf <C-w>f
 
 """ Save and quit
 nnoremap <leader>w :w<CR>
@@ -106,7 +112,6 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>rc :tabnew $MYVIMRC<CR>
 """ Load config
 nnoremap <leader>vim :source $MYVIMRC<CR>
-"}}}
 
 "" Terminal keymaps
 if has('win32')
@@ -117,6 +122,7 @@ if has('unix')
    nnoremap <leader>t :belowright split \| terminal zsh<CR>
 endif
 tnoremap <C-d> <C-\><C-n>
+"}}}
 
 " General editor config{{{
 "" 256 color support
@@ -147,7 +153,7 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 :colorscheme molokai
 
 """ visual representation of stuff
-set listchars=tab:\|·,trail:˽,extends:,precedes:,space:·,nbsp:%
+set listchars=tab:\|\ ,trail:˽,extends:,precedes:,space:·,nbsp:%
 set list
 
 "}}}
