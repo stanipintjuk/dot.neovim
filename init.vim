@@ -54,7 +54,8 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*/node_modules/*
 
 """ Git
-Plug 'jreybert/vimagit'
+"Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 
 "" Theming plugins
 """ PowerLine
