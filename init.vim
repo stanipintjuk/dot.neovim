@@ -37,19 +37,15 @@ Plug 'LnL7/vim-nix'
 "" Workflow plugins
 """ NERDTree
 Plug 'preservim/nerdtree'
-nnoremap <leader>n :NERDTreeToggle<CR>
+Plug 'Xuyuanp/nerdtree-git-plugin'
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let NERDTreeShowBookmarks = 1
-
-""" Sessions
-Plug 'xolox/vim-session'
-
-""" Merge tabs
-Plug 'vim-scripts/Tabmerge'
 
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
 
-""" CtrlP 
+""" CtrlP
 Plug 'kien/ctrlp.vim'
 let g:ctrlp_map = '<leader><Space>' 
 let g:ctrlp_cmd = 'CtrlP'
@@ -59,8 +55,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*/node_modules/*
 
 """ Git
-"Plug 'jreybert/vimagit'
-Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 "" Theming plugins
 """ PowerLine
@@ -96,22 +91,21 @@ nnoremap gL <C-w>L
 
 nnoremap g= <C-w>=
 
-nnoremap gn :split<CR>
-nnoremap gv :vsplit<CR>
+nnoremap <silent> gn :split<CR>
+nnoremap <silent> gv :vsplit<CR>
 
 "" go to file in new buffer
-
-nnoremap gf <C-w>f
+nnoremap gf :belowright vsplit <cfile><CR>
 
 """ Save and quit
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>q :q<CR>
 
 "" Shortcuts
 """ Edit config
-nnoremap <leader>rc :tabnew $MYVIMRC<CR>
+nnoremap <silent> <leader>rc :tabnew $MYVIMRC<CR>
 """ Load config
-nnoremap <leader>vim :source $MYVIMRC<CR>
+nnoremap <silent> <leader>vim :source $MYVIMRC<CR>
 
 "" Terminal keymaps
 if has('win32')
@@ -150,11 +144,15 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 " }}}
 
 " Theming{{{
-:colorscheme molokai
+:colorscheme PaperColor
 
 """ visual representation of stuff
-set listchars=tab:\|\ ,trail:˽,extends:,precedes:,space:·,nbsp:%
+set listchars=tab:\|·,trail:˽,extends:,precedes:,space:·,nbsp:%
 set list
+
+""" Terminal specific background color
+hi TermBg guibg=white
+au TermOpen * :set winhighlight=Normal:TermBg
 
 "}}}
 
