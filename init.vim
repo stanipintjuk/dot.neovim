@@ -66,6 +66,9 @@ let g:airline_powerline_fonts = 1
 
 """ Themes
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char = "▏"
+let g:indentLine_showFirstIndentLevel = 1
 
 
 """ Tools
@@ -115,6 +118,10 @@ endif
 if has('unix')
    nnoremap <leader>t :belowright split \| terminal zsh<CR>
 endif
+
+autocmd TermOpen * set nonumber | set norelativenumber
+autocmd TermOpen * IndentLinesDisable
+
 tnoremap <C-d> <C-\><C-n>
 "}}}
 
@@ -147,7 +154,8 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 :colorscheme PaperColor
 
 """ visual representation of stuff
-set listchars=tab:\|·,trail:˽,extends:,precedes:,space:·,nbsp:%
+set listchars=tab:\|·,trail:˽,extends:,precedes:,space:\ ,nbsp:%
+
 set list
 
 """ Terminal specific background color
