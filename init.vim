@@ -55,7 +55,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*/node_modules/*
 
 """ Git
-Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 
 "" Theming plugins
 """ PowerLine
@@ -69,6 +69,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = "▏"
 let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_first_char = "▏"
 
 
 """ Tools
@@ -157,10 +158,5 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 set listchars=tab:\|·,trail:˽,extends:,precedes:,space:\ ,nbsp:%
 
 set list
-
-""" Terminal specific background color
-hi TermBg guibg=white
-au TermOpen * :set winhighlight=Normal:TermBg
-
 "}}}
 
