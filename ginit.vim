@@ -1,2 +1,3 @@
-:GuiFont Hack:12h
+:GuiFont Hack:13h
 :GuiTabline 0
+:GuiPopupmenu 0

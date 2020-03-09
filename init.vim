@@ -7,6 +7,7 @@ let mapleader = ";"
 " == VIM PLUG ================================ 
 " Setup plugin manager
 if has('unix')
+   set shell=zsh
    let g:nvim_config_dir = '~/.config/nvim'
    let g:nvim_plugged_dir = g:nvim_config_dir . '/plugged'
    let g:nvim_autoload_plugvim = g:nvim_config_dir . '/autoload/plug.vim'
@@ -22,6 +23,7 @@ if has('win32')
    let g:nvim_config_dir = '$LOCALAPPDATA\nvim'
    let g:nvim_plugged_dir = g:nvim_config_dir . '\plugged'
    let g:nvim_autoload_plugvim = g:nvim_config_dir . '\autoload\plug.vim'
+   set shell=cmd
    if empty(glob(g:nvim_autoload_plugvim))
       silent ! powershell (md "$env:LOCALAPPDATA\nvim\autoload")
       silent ! powershell curl 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' -Outfile ("$env:LOCALAPPDATA" + '\nvim\autoload\plug.vim')
@@ -31,7 +33,7 @@ if has('win32')
 endif
 
 "" Languages
-exec "source " . g:nvim_config_dir . '/plugin-configs/ts-react-stack.vim'
+silent! exec "source " . g:nvim_config_dir . '/plugin-configs/ts-react-stack.vim'
 Plug 'LnL7/vim-nix'
 
 "" Workflow plugins
@@ -41,18 +43,57 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let NERDTreeShowBookmarks = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "○",
+    \ "Staged"    : "●",
+    \ "Untracked" : "◊",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "◍",
+    \ "Clean"     : "●",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" NERDTrees File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', 'none')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('md', 'lightBlue', 'none', '#3366FF', 'none')
+call NERDTreeHighlightFile('ts', 'cyan', 'none', 'cyan', 'none')
+call NERDTreeHighlightFile('tsx', 'cyan', 'none', 'cyan', 'none')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', 'none')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', 'none')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', 'none')
+call NERDTreeHighlightFile('jpg', 'lightred', 'none', 'lightred', 'none')
+call NERDTreeHighlightFile('jpeg', 'lightRed', 'none', 'lightRed', 'none')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', 'none')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', 'none')
+
+"call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', 'none')
+"call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', 'none')
+"call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', 'none')
+"call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', 'none')
+"call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', 'none')
 
 """ Unix like operations
 Plug 'tpope/vim-eunuch'
 
-""" CtrlP
-Plug 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader><Space>' 
-let g:ctrlp_cmd = 'CtrlP'
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-set wildignore+=*/node_modules/*
+""" Fzf
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+nnoremap <silent> <leader><Space> :FZF<CR>
 
 """ Git
 Plug 'tpope/vim-fugitive'
@@ -64,13 +105,16 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1
 
-""" Themes
+"""" Themes
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = "▏"
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_first_char = "▏"
 
+"""" Some nice icons
+Plug 'ryanoasis/vim-devicons'
+set encoding=utf8
 
 """ Tools
 Plug 'dhruvasagar/vim-table-mode'
@@ -112,16 +156,7 @@ nnoremap <silent> <leader>rc :tabnew $MYVIMRC<CR>
 nnoremap <silent> <leader>vim :source $MYVIMRC<CR>
 
 "" Terminal keymaps
-if has('win32')
-   nnoremap <leader>t :belowright split \| terminal powershell<CR>
-endif
-
-if has('unix')
-   nnoremap <leader>t :belowright split \| terminal zsh<CR>
-endif
-
-autocmd TermOpen * set nonumber | set norelativenumber
-autocmd TermOpen * IndentLinesDisable
+nnoremap <leader>t :belowright split \| terminal<CR>
 
 tnoremap <C-d> <C-\><C-n>
 "}}}
@@ -157,6 +192,12 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 """ visual representation of stuff
 set listchars=tab:\|·,trail:˽,extends:,precedes:,space:\ ,nbsp:%
 
+""" Dont show stuff in terminal and help
+autocmd TermOpen * set nonumber | set norelativenumber
+autocmd TermOpen * IndentLinesDisable
+
+autocmd FileType help IndentLinesDisable
+autocmd FileType colortest.vim IndentLinesDisable
 set list
 "}}}
 
