@@ -31,11 +31,14 @@ inoremap <silent><expr> <Tab>
 "------------------------ VIM TSX ------------------------
 " by default, if you open tsx file, neovim does not show syntax colors
 " vim-tsx will do all the coloring for jsx in the .tsx file
-Plug 'ianks/vim-tsx'
+
+""Plug 'ianks/vim-tsx'
+Plug 'peitalin/vim-jsx-typescript'
 
 "------------------------ VIM TSX ------------------------
 " by default, if you open tsx file, neovim does not show syntax colors "
 " typescript-vim will do all the coloring for typescript keywords 
+
 ""Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
 
