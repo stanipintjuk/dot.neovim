@@ -193,6 +193,18 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 highlight NonText guifg=bg
 highlight CursorLineNr ctermbg=236 guibg=#232526
 
+highlight SignColumn guibg=Gray12
+
+highlight DiffText gui=bold,italic guibg=goldenrod3
+highlight DiffChange guibg=goldenrod4 guifg=goldenrod2
+highlight DiffAdd guibg=DeepSkyBlue4
+highlight DiffDelete guibg=IndianRed4
+set fillchars=diff:\ 
+
+highlight link GitGutterAdd DiffAdd
+highlight link GitGutterChange DiffChange
+highlight link GitGutterDelete DiffDelete
+
 """ visual representation of stuff
 set listchars=tab:\|·,trail:˽,extends:,precedes:,nbsp:%
 
@@ -204,11 +216,6 @@ autocmd FileType help IndentLinesDisable
 autocmd FileType colortest.vim IndentLinesDisable
 set list
 
-""" Git themes
-highlight link GitGutterAdd DiffAdd
-highlight link GitGutterChange DiffChange
-highlight link GitGutterDelete DiffDelete
-highlight SignColumn guibg=Gray12
 
 let g:gitgutter_sign_added = '▌'
 let g:gitgutter_sign_modified = '▌'
