@@ -20,6 +20,7 @@ if has('unix')
 endif
 
 if has('win32')
+   let g:python3_host_prog = 'C:\Python38\python.exe'
    let g:nvim_config_dir = '$LOCALAPPDATA\nvim'
    let g:nvim_plugged_dir = g:nvim_config_dir . '\plugged'
    let g:nvim_autoload_plugvim = g:nvim_config_dir . '\autoload\plug.vim'
@@ -37,6 +38,9 @@ silent! exec "source " . g:nvim_config_dir . '/plugin-configs/ts-react-stack.vim
 Plug 'LnL7/vim-nix'
 
 "" Workflow plugins
+""" minimap
+Plug 'severin-lemaignan/vim-minimap'
+
 """ NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -190,7 +194,8 @@ set linebreak " this will not break words when 'set wrap' is executed manually
 
 " Theming{{{
 :colorscheme molokai
-highlight NonText guifg=bg
+highlight NonText guifg=gray9 guibg=gray9
+
 highlight CursorLineNr ctermbg=236 guibg=#232526
 
 highlight SignColumn guibg=Gray12
@@ -217,7 +222,7 @@ autocmd FileType colortest.vim IndentLinesDisable
 set list
 
 
-let g:gitgutter_sign_added = '▌'
+let g:gitgutter_sign_added = "▏"
 let g:gitgutter_sign_modified = '▌'
 let g:gitgutter_sign_modified_removed = '▋'
 let g:gitgutter_sign_removed = '▌'

@@ -6,8 +6,8 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier' ]
 nnoremap <leader>p :CocCommand prettier.formatFile<CR>
 nnoremap <leader>a :CocAction<CR>
-let g:coc_status_error_sign = '█ ';
-let g:coc_status_warning_sign = '█ ';
+let g:coc_status_error_sign = '█';
+let g:coc_status_warning_sign = '█';
 
 " Remap keys for gotos
 au BufNewFile,BufRead *.tsx
