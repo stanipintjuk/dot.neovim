@@ -40,7 +40,7 @@ Plug 'LnL7/vim-nix'
 """ NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-nnoremap <silent> <leader>m :NERDTree<CR>
+"nnoremap <silent> <leader>m :NERDTree<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let NERDTreeShowBookmarks = 1
@@ -165,9 +165,9 @@ tnoremap <C-d> <C-\><C-n>
 
 " General editor config{{{
 "" 256 color support
-execute "set t_8f=\e[38;2;%lu;%lu;%lum"
-execute "set t_8b=\e[48;2;%lu;%lu;%lum"
-set termguicolors
+"execute "set t_8f=\e[38;2;%lu;%lu;%lum"
+"execute "set t_8b=\e[48;2;%lu;%lu;%lum"
+"set termguicolors
 
 "" Tabs and spaces
 set tabstop=3       " number of visual spaces per TAB
